@@ -92,7 +92,8 @@ class BenchmarkTarget
         $this->reset();
 
         if (!$this->callback) {
-            return;
+            // TODO: Throw an exception here.
+            return $this;
         }
 
         $this->start();
@@ -100,6 +101,8 @@ class BenchmarkTarget
         ($this->callback)();
 
         $this->stop();
+
+        return $this;
     }
 
     public function setName(string $name)
