@@ -1,0 +1,2 @@
+# Benchmark Utility
+There are two primary components of use, the BenchmarkTarget and the Benchmark. The BenchmarkTarget can be used to measure the processing time of a process. The Benchmark class is used to perform benchmarking of a group of targets.

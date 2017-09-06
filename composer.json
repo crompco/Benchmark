@@ -1,0 +1,22 @@
+{
+  "name": "Crompco/Benchmark",
+  "description": "A benchmarking tool.",
+  "type": "library",
+  "license": "GNU",
+  "authors": [
+    {
+      "name": "Christian Roman"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Crompco\\Benchmark\\": "source/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.0"
+  }
+}
