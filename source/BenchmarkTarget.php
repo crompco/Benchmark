@@ -167,6 +167,8 @@ class BenchmarkTarget
      */
     public function reset() {
         $this->start = $this->end = $this->elapsed = 0.0;
+
+        return $this;
     }
 
     private function calculateElapsed()
