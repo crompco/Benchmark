@@ -52,7 +52,17 @@ class BenchmarkTargetTests extends TestCase
     public function testThatItFailsWhenAnInvalidMetricIsSet()
     {
         $this->expectException(Crompco\Benchmark\BenchmarkException::class);
+        $this->expectExceptionMessage('Invalid metric');
+
         $benchmark = new BenchmarkTarget("my benchmark", null, "not an actual metric");
+    }
+
+    public function testThatIfFailsWhenItsNotGivenACallback() {
+        $this->expectException(Crompco\Benchmark\BenchmarkException::class);
+        $this->expectExceptionMessage('Invalid callback');
+
+        $benchmark = new BenchmarkTarget("benchmark");
+        $benchmark->run();
     }
 
     public function testThatItCanMeasureProcessTimeInMillisecondsUsingRun()

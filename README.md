@@ -25,3 +25,17 @@ $elapsed = $benchmark->getElapsed();
 
 By default, execution times are reported in milliseconds. This can configured during construction
 or by using the ```$benchmark->setMetric();``` method. See ```Crompco\Benchmark\BenchmarkMetric``` for available metrics.
+
+```php
+// Create a benchmark target which will report in seconds (as opposed to the ms default)
+$benchmark = new Crompco\Benchmark\BenchmarkTarget("My benchmark", null, Crompco\Benchmark\BenchmarkMetric::SECONDS);
+
+// Or use the setMetric() method
+$benchmark->setMetric(Crompco\Benchmark\BenchmarkMetric::SECONDS);
+
+$benchmark->start();
+sleep(3);
+$benchmark->stop();
+
+$elapsed = $benchmark->getElapsed(); // ~3.0
+```

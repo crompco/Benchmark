@@ -12,18 +12,22 @@ class Benchmark
     private $targets = [];
 
     /**
-     * @param string $name
-     * @param string $metric
-     * @param callable|null $callback
+     * @param BenchmarkTarget $target
      * @return $this
-     * @internal param string $key
      */
-    public function addTarget(
-        string $name,
-        $metric = BenchmarkMetric::MILLISECONDS,
-        callable $callback = null
-    ) {
-        $this->targets[$name] = new BenchmarkTarget($name, $metric, $callback);
+    public function addTarget(BenchmarkTarget $target) {
+
+        $this->targets[$target->getName()] = $target;
+
+        return $this;
+    }
+
+    public function removeTarget(string $name) {
+        if (!$this->targetExists($name)) {
+            throw new BenchmarkException("Benchmark Target '{$name}' not found.");
+        }
+
+        unset($this->targets[$name]);
 
         return $this;
     }
@@ -80,13 +84,18 @@ class Benchmark
         return $results;
     }
 
-    private function target(string $target_key): BenchmarkTarget
+    public function target(string $name): BenchmarkTarget
     {
-        if (!array_key_exists($target_key, $this->targets)) {
-            throw new BenchmarkException("Benchmark target '{$target_key}' not found.");
+        if (!$this->targetExists($name)) {
+            throw new BenchmarkException("Benchmark target '{$name}' not found.");
         }
 
-        return $this->targets[$target_key];
+        return $this->targets[$name];
+    }
+
+    private function targetExists(string $name) : bool
+    {
+        return array_key_exists($name, $this->targets);
     }
 }
 

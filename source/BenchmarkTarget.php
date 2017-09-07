@@ -92,8 +92,7 @@ class BenchmarkTarget
         $this->reset();
 
         if (!$this->callback) {
-            // TODO: Throw an exception here.
-            return $this;
+            throw new BenchmarkException("Invalid callback");
         }
 
         $this->start();
@@ -120,7 +119,7 @@ class BenchmarkTarget
     public function setMetric($metric)
     {
         if (!in_array($metric, self::$allowed_metrics)) {
-            throw new BenchmarkException("Invalid metric of '{$metric}'");
+            throw new BenchmarkException("Invalid metric");
         }
 
         $this->metric = $metric;
