@@ -159,7 +159,7 @@ class BenchmarkTarget
                 break;
         }
 
-        return (float)round($time, 2);
+        return (float)round($time, 10);
     }
 
     /**
